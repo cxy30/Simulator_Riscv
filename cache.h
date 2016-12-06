@@ -34,12 +34,12 @@ class Cache: public Storage {
     void SetLower(Storage *ll) { lower_ = ll; }
     // Main access process
     void HandleRequest(uint64_t addr, int bytes, int read,
-                     char *content, int &hit, int &time);
+                     char *content, bool prefetch);
 
     private:
     void WriteCache(uint64_t index, uint64_t position, uint64_t offset, int bytes, char* content);
     void HitCache(uint64_t index, uint64_t position);
-    int ReplacePlace(uint64_t index, uint64_t tag, char* content);
+    int ReplacePlace(uint64_t index, uint64_t tag, char* content, bool prefetch);
     /*
     // Bypassing
     int BypassDecision();
@@ -54,7 +54,7 @@ class Cache: public Storage {
 
 
 
-    int replaceLRU(int index);
+    int GetReplacePosition(int index);
 
 
     CacheConfig config_;

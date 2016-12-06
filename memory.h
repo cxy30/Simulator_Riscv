@@ -13,7 +13,7 @@ class Memory: public Storage {
 
   // Main access process
   void HandleRequest(uint64_t addr, int bytes, int read,
-                     char *content, int &hit, int &time);
+                     char *content, bool prefetch);
   Elf64_Addr entry;
   Elf64_Addr inisp;
  private:

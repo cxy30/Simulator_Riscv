@@ -74,16 +74,20 @@ Cache::~Cache(){
 }
 
 void Cache::HandleRequest(uint64_t addr, int bytes, int read,
-                          char *content, int &hit, int &time) {
+                          char *content, bool prefetch) {
     uint64_t initial_addr = addr;
     char* initial_content = content;
     int ini_total_bytes = bytes; 
 
-    stats_.access_counter ++;
-    stats_.access_time += latency_.bus_latency;
+    if (prefetch == FALSE){
+        stats_.access_counter ++;
+        stats_.access_time += latency_.bus_latency;
+    }
+    else{
+        stats_.prefetch_num ++;
+    }
 
-    hit = 0;
-    time = 0;
+    int hit = 0;
     uint64_t offset = addr & ((1 << config_.block_bit) - 1);
     uint64_t index = (addr >> config_.block_bit) & ((1 << config_.index_bit) - 1);
     uint64_t tag = addr >> (config_.block_bit + config_.index_bit);
@@ -100,10 +104,12 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
         }
     }
 
-    if (hit == 0)
-        stats_.miss_num ++;
-    else
-        stats_.access_time += latency_.hit_latency;
+    if (prefetch == FALSE){
+        if (hit == 0)
+            stats_.miss_num ++;
+        else
+            stats_.access_time += latency_.hit_latency;
+    }
 
     int lower_hit = -1, lower_time = 0;
     if (read == 1){
@@ -112,10 +118,11 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
         else{
             char *lower_content = new char[config_.block_size];
             uint64_t lower_addr = addr - offset;
-            stats_.fetch_num ++;
+            if (prefetch == FALSE)
+                stats_.fetch_num ++;
             lower_->HandleRequest(lower_addr, config_.block_size, 1,
-                lower_content, lower_hit, lower_time);
-            position = ReplacePlace(index, tag, lower_content);
+                lower_content, prefetch);
+            position = ReplacePlace(index, tag, lower_content, prefetch);
             delete lower_content;
         }
 
@@ -128,37 +135,39 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
             WriteCache(index, position, offset, bytes, content);
             if (config_.write_through == 1){
                 lower_->HandleRequest(addr, bytes, 0, 
-                    content, lower_hit, lower_time);
+                    content, prefetch);
             }
         }
         else{
             if (config_.write_allocate == 1){
                 char *lower_content = new char[config_.block_size];
                 uint64_t lower_addr = addr - offset;
-                stats_.fetch_num ++;
+                if (prefetch == FALSE)
+                    stats_.fetch_num ++;
                 lower_->HandleRequest(lower_addr, config_.block_size, 1,
-                    lower_content, lower_hit, lower_time);
-                position = ReplacePlace(index, tag, lower_content);
+                    lower_content, prefetch);
+                position = ReplacePlace(index, tag, lower_content, prefetch);
                 WriteCache(index, position, offset, bytes, content);
                 if (config_.write_through == 1){
                     int lower_hit, lower_time;
                     lower_->HandleRequest(addr, bytes, 0, 
-                        content, lower_hit, lower_time);
+                        content, prefetch);
                 }
                 delete lower_content;
             }
             else{
                 lower_->HandleRequest(addr, bytes, 0, 
-                    content, lower_hit, lower_time);
+                    content, prefetch);
             }
         }
     }
 }
 
-int Cache::ReplacePlace(uint64_t index, uint64_t tag, char* content){
-    stats_.replace_num ++;
+int Cache::ReplacePlace(uint64_t index, uint64_t tag, char* content, bool prefetch){
+    if (prefetch == FALSE)
+        stats_.replace_num ++;
 
-    int position = replaceLRU(index);
+    int position = GetReplacePosition(index);
 
 
     if (config_.write_through == 0 && cache_addr[index][position].valid == TRUE && cache_addr[index][position].dirty == TRUE){
@@ -166,7 +175,7 @@ int Cache::ReplacePlace(uint64_t index, uint64_t tag, char* content){
         uint64_t lower_addr = (cache_addr[index][position].tag << (config_.block_bit + config_.index_bit))
             + (index << (config_.block_bit)); 
         lower_->HandleRequest(lower_addr, config_.block_size, 0,
-                cache_addr[index][position].content, lower_hit, lower_time);
+                cache_addr[index][position].content, prefetch);
     }
 
 
@@ -184,13 +193,3 @@ void Cache::WriteCache(uint64_t index, uint64_t position, uint64_t offset, int b
     cache_addr[index][position].dirty = TRUE;
 }
 
-void Cache::HitCache(uint64_t index, uint64_t position){
-    for (int i = 0; i < config_.associativity; ++ i){
-        if (block_queue[index][i] == position){
-            for (int j = i + 1; j < config_.associativity; ++ j)
-                block_queue[index][j - 1] = block_queue[index][j];
-            block_queue[index][config_.associativity - 1] = position;
-            break; 
-        }
-    }
-}

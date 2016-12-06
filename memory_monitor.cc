@@ -91,7 +91,7 @@ MemoryMonitor::Load(lint ad, int length)
 	int time;
 	//printf("load %llx\n", ad);
 	for(int i = 0; i < length; i++)
-		l1->HandleRequest(ad+i, 1, 1, loadcontent+i, hit, time);
+		l1->HandleRequest(ad+i, 1, 1, loadcontent+i, 0);
 	return loadcontent;
 }
 
@@ -102,7 +102,7 @@ MemoryMonitor::Store(lint ad,int length, char*content)
 	int hit;
 	int time;
 	for(int i = 0; i < length; i++)
-		l1->HandleRequest(ad+i, 1, 0, content+i, hit, time);
+		l1->HandleRequest(ad+i, 1, 0, content+i, 0);
 	return;
 }
 

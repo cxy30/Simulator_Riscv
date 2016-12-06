@@ -1,5 +1,6 @@
 #include "memory.h"
 #include <memory.h>
+
 Memory::Memory(char* filename, bool simulate_)
 {
 	simulate = simulate_;
@@ -42,19 +43,21 @@ Memory::Memory(char* filename, bool simulate_)
     stats_.prefetch_num = 0;
 }
 void Memory::HandleRequest(uint64_t addr, int bytes, int read,
-                          char *content, int &hit, int &time) {
-  stats_.access_counter ++;
-  stats_.access_time += latency_.hit_latency + latency_.bus_latency;
-  if (simulate){
-	  //printf("memory addr: %llx\n", addr);
-	  if(read==1)
-	  {
-	  	memcpy(content,simumem+addr,bytes);
-	  }
-	  else
-	  {
-	  	memcpy(simumem+addr,content,bytes);
-	  }
-  }
+                          char *content, bool prefetch) {
+	if (prefetch == false){
+  		stats_.access_counter ++;
+  		stats_.access_time += latency_.hit_latency + latency_.bus_latency;
+  	}
+  	if (simulate){
+	  	//printf("memory addr: %llx\n", addr);
+	  	if(read==1)
+	  	{
+	  		memcpy(content,simumem+addr,bytes);
+	  	}
+	  	else
+	  	{
+	  		memcpy(simumem+addr,content,bytes);
+	  	}
+  	}
 }
 

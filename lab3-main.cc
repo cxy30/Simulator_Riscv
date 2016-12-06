@@ -53,7 +53,6 @@ int main(int argc, char **argv) {
   l1->SetLatency(ll);
   //printf("main6\n");
 
-  int hit = 0, time = 0;
   char content[64];
 
   fin.open("./trace/1.trace", ios::in);
@@ -67,11 +66,11 @@ int main(int argc, char **argv) {
     //printf("q: %c address: %llx\n", q, address);
     if(q == 'r')
     {
-      l1->HandleRequest(address, 1, 1, content, hit, time);
+      l1->HandleRequest(address, 1, 1, content, 0);
     }
     else if(q == 'w')
     {
-      l1->HandleRequest(address, 1, 0, content, hit, time);
+      l1->HandleRequest(address, 1, 0, content, 0);
     }
     else
     {
