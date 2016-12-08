@@ -61,7 +61,8 @@ class Cache: public Storage {
     Storage *lower_;
     DISALLOW_COPY_AND_ASSIGN(Cache);
     Block **cache_addr;
-    int **block_queue;
+    int **block_lastuse;
+    int **block_enter;
 };
 
 #endif //CACHE_CACHE_H_ 

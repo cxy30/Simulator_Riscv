@@ -1,0 +1,221 @@
+LRU trace1
+cache 1:
+access_counter: 10000
+miss_num: 9962
+access_time: 40000
+replace_num: 9962
+fetch_num: 9962
+prefetch_num: 0
+
+cache 2:
+access_counter: 14665
+miss_num: 9962
+access_time: 161315
+replace_num: 9962
+fetch_num: 9962
+prefetch_num: 0
+
+memory:
+access_counter: 12667
+miss_num: 0
+access_time: 1266700
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 1468015
+
+RAND trace1:
+
+cache 1:
+access_counter: 10000
+miss_num: 9963
+access_time: 40000
+replace_num: 9963
+fetch_num: 9963
+prefetch_num: 0
+
+cache 2:
+access_counter: 14662
+miss_num: 10295
+access_time: 161282
+replace_num: 10295
+fetch_num: 10295
+prefetch_num: 0
+
+memory:
+access_counter: 13205
+miss_num: 0
+access_time: 1320500
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 1521782
+
+
+FIFO trace1:
+cache 1:
+access_counter: 10000
+miss_num: 9962
+access_time: 40000
+replace_num: 9962
+fetch_num: 9962
+prefetch_num: 0
+
+cache 2:
+access_counter: 14665
+miss_num: 9961
+access_time: 161315
+replace_num: 9961
+fetch_num: 9961
+prefetch_num: 0
+
+memory:
+access_counter: 12850
+miss_num: 0
+access_time: 1285000
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 1486315
+
+Aging trace1:
+
+cache 1:
+access_counter: 10000
+miss_num: 9962
+access_time: 40000
+replace_num: 9962
+fetch_num: 9962
+prefetch_num: 0
+
+cache 2:
+access_counter: 14665
+miss_num: 9962
+access_time: 161315
+replace_num: 9962
+fetch_num: 9962
+prefetch_num: 0
+
+memory:
+access_counter: 12667
+miss_num: 0
+access_time: 1266700
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 1468015
+
+LRU trace2:
+
+cache 1:
+access_counter: 32793
+miss_num: 32793
+access_time: 131172
+replace_num: 32793
+fetch_num: 32793
+prefetch_num: 0
+
+cache 2:
+access_counter: 48510
+miss_num: 32784
+access_time: 533610
+replace_num: 32784
+fetch_num: 32784
+prefetch_num: 0
+
+memory:
+access_counter: 46796
+miss_num: 0
+access_time: 4679600
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 5344382
+
+RAND trace2:
+
+cache 1:
+access_counter: 32793
+miss_num: 32793
+access_time: 131172
+replace_num: 32793
+fetch_num: 32793
+prefetch_num: 0
+
+cache 2:
+access_counter: 48494
+miss_num: 32088
+access_time: 533434
+replace_num: 32088
+fetch_num: 32088
+prefetch_num: 0
+
+memory:
+access_counter: 45860
+miss_num: 0
+access_time: 4586000
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 5250606
+
+FIFO trace2:
+
+cache 1:
+access_counter: 32793
+miss_num: 32793
+access_time: 131172
+replace_num: 32793
+fetch_num: 32793
+prefetch_num: 0
+
+cache 2:
+access_counter: 48510
+miss_num: 32789
+access_time: 533610
+replace_num: 32789
+fetch_num: 32789
+prefetch_num: 0
+
+memory:
+access_counter: 46806
+miss_num: 0
+access_time: 4680600
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 5345382
+
+Aging trace2:
+cache 1:
+access_counter: 32793
+miss_num: 32793
+access_time: 131172
+replace_num: 32793
+fetch_num: 32793
+prefetch_num: 0
+
+cache 2:
+access_counter: 48510
+miss_num: 32784
+access_time: 533610
+replace_num: 32784
+fetch_num: 32784
+prefetch_num: 0
+
+memory:
+access_counter: 46796
+miss_num: 0
+access_time: 4679600
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 5344382

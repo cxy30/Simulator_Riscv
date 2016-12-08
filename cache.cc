@@ -33,11 +33,16 @@ Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate
     //printf("tag_bit: %d index_bit: %d block_bit: %d\n", config_.tag_bit, config_.index_bit, config_.block_bit);
     //printf("size %d, associativity %d, set_num %d\n", size, way, set);
     lower_ = storage;
-    block_queue = new int*[config_.set_num];
+    block_lastuse = new int *[config_.set_num];
+    block_enter = new int*[config_.set_num];
     for(int i = 0; i < config_.set_num; ++ i){
-        block_queue[i] = new int[config_.associativity];
+        block_lastuse[i] = new int[config_.associativity];
+        block_enter[i] = new int[config_.associativity];
         for (int j = 0; j < config_.associativity; ++ j)
-            block_queue[i][j] = j;
+            {
+                block_lastuse[i][j]=-1;
+                block_enter[i][j]=-1;
+            }
     }
 
     cache_addr = new Block*[set];
@@ -68,8 +73,12 @@ Cache::~Cache(){
         delete cache_addr[i];
     }
     for (int i = 0; i < config_.set_num; ++ i)
-        delete block_queue[i];
-    delete block_queue;
+        {
+            delete block_lastuse[i];
+            delete block_enter[i];
+        } 
+    delete block_lastuse;
+    delete block_enter;
     delete cache_addr;
 }
 
@@ -107,8 +116,8 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
     if (prefetch == FALSE){
         if (hit == 0)
             stats_.miss_num ++;
-        else
-            stats_.access_time += latency_.hit_latency;
+        //else
+        stats_.access_time += latency_.hit_latency;
     }
 
     int lower_hit = -1, lower_time = 0;
