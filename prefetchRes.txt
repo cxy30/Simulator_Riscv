@@ -51,3 +51,31 @@ fetch_num: 0
 prefetch_num: 0
 
 total latency: 2833638
+
+
+final policy trace1:
+cache 1:
+access_counter: 612200
+miss_num: 3436
+access_time: 2448800
+replace_num: 3436
+fetch_num: 3436
+prefetch_num: 720134
+
+cache 2:
+access_counter: 3545
+miss_num: 3375
+access_time: 38995
+replace_num: 3375
+fetch_num: 3375
+prefetch_num: 7443
+
+memory:
+access_counter: 3395
+miss_num: 0
+access_time: 339500
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 2827295

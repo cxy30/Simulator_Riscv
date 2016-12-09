@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
   l2->SetLatency(ll2);
   char content[64];
 
-  fin.open("./trace/3.trace", ios::in);
+  fin.open("./trace/1.trace", ios::in);
   char q;
   lint address;
   int requestNum = 0;
