@@ -9,6 +9,9 @@ $(PROGRAM) : main.o $(O_FILES)
 lab3 : lab3-main.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
 	$(CC) -o lab3 lab3-main.o memory.o cache.o replace_algorithm.o
 
+performance : performance.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
+	$(CC) -o performance performance.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
+
 main.o : main.cc machine.h
 	$(CC) -c main.cc
 
@@ -45,5 +48,8 @@ prefetch.o: cache.h
 bypass.o: cache.h
 	$(CC) -c bypass.cc
 
+performance.o : performance.cc cache.h memory.h param.h
+	$(CC) -c performance.cc
+
 clean : 
-	rm $(PROGRAM) main.o $(O_FILES) lab3-main.o lab3
+	rm $(PROGRAM) main.o $(O_FILES) lab3-main.o lab3 performance.o performance
