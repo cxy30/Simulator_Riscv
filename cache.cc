@@ -19,7 +19,7 @@ int SetBitNum(uint64_t num){
     return bit;
 }
 
-Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage){
+Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage, bool useBypass0){
     //printf("init cache\n");
     config_.size = size;
     config_.associativity = way;
@@ -67,6 +67,25 @@ Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate
     stats_.fetch_num = 0;
     stats_.prefetch_num = 0;
 
+    info = new Info[(1 << 16) - 1];
+    for (int i = 0; i < (1 << 16) - 1; ++ i){
+        info[i].maxC = -1;
+        info[i].conf = FALSE;
+        info[i].valid = FALSE;
+    }
+    cache_info = new CacheInfo*[set];
+    for (int i = 0; i < set; ++ i){
+        cache_info[i] = new CacheInfo[way];
+        for (int j = 0; j < way; ++ j){
+            cache_info[i][j].C = 0;
+            cache_info[i][j].maxC = 0;
+            cache_info[i][j].maxCp = 0;
+            cache_info[i][j].conf = 0;
+            cache_info[i][j].totalC = 0;
+        }
+    }
+    useBypass = useBypass0;
+
 }
 
 Cache::~Cache(){
@@ -85,6 +104,8 @@ Cache::~Cache(){
     delete block_enter;
     delete cache_addr;
     delete prefetch_tag;
+    delete info;
+    delete cache_info;
 }
 
 void Cache::HandleRequest(uint64_t addr, int bytes, int read,
@@ -109,6 +130,14 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
         printf("content not in a single block\n");
     exit(0);
     }
+
+    if (useBypass && do_bypass(addr, index)){
+        lower_->HandleRequest(addr, bytes, read, content, prefetch);
+        stats_.fetch_num ++;
+        return;
+    }
+
+
     int position = 0;
     for (int i = 0; i < config_.associativity; ++ i){
         if (cache_addr[index][i].tag == tag && cache_addr[index][i].valid == TRUE){
@@ -219,6 +248,13 @@ int Cache::ReplacePlace(uint64_t index, uint64_t tag, char* content, bool prefet
     prefetch_tag[index][position]=1;
     else
     prefetch_tag[index][position]=0;
+
+    int tag0 = -1;
+    if (cache_addr[index][position].valid == TRUE){
+        tag0 = cache_addr[index][position].tag;
+        //printf("replaced\n");
+    }
+    updateInfo(index, tag0, position, tag);
 
     if (config_.write_through == 0 && cache_addr[index][position].valid == TRUE && cache_addr[index][position].dirty == TRUE){
         int lower_hit, lower_time;

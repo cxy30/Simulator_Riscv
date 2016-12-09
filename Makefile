@@ -7,7 +7,7 @@ $(PROGRAM) : main.o $(O_FILES)
 	$(CC) -o $(PROGRAM) main.o $(O_FILES)
 
 lab3 : lab3-main.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
-	$(CC) -o lab3 lab3-main.o memory.o cache.o replace_algorithm.o
+	$(CC) -o lab3 lab3-main.o memory.o cache.o replace_algorithm.o bypass.o
 
 performance : performance.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
 	$(CC) -o performance performance.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o

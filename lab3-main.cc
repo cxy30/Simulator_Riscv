@@ -69,8 +69,11 @@ int main(int argc, char **argv) {
   ll2.hit_latency=5;// find it in cacti
   l2->SetLatency(ll2);
   char content[64];
-
-  fin.open("./trace/1.trace", ios::in);
+  if(argc!=2)
+  {
+    printf("illegal parameter\n");
+  }
+  fin.open(argv[1], ios::in);
   char q;
   lint address;
   int requestNum = 0;

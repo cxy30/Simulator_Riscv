@@ -25,7 +25,7 @@ struct Block{
 
 class Cache: public Storage {
     public:
-    Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage);
+    Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage, bool useBypass0 = false);
     ~Cache();
 
     // Sets & Gets
@@ -55,6 +55,8 @@ class Cache: public Storage {
 
 
     int GetReplacePosition(int index);
+    void updateInfo(int index, uint64_t tag, int position, uint64_t newTag);
+    bool do_bypass(uint64_t addr, int index);
 
 
     CacheConfig config_;
@@ -64,6 +66,27 @@ class Cache: public Storage {
     int **block_lastuse;
     int **block_enter;
     int ** prefetch_tag;
+
+
+    //structure for AIP algorithm
+    bool useBypass;
+    struct Info
+    {
+        int maxC;
+        bool conf;
+        bool valid;
+        uint64_t addr;
+    };
+    Info *info; // just for test
+    struct CacheInfo
+    {
+        int C;
+        int maxC;
+        int maxCp;
+        int totalC;
+        bool conf;
+    };
+    CacheInfo **cache_info;
 };
 
 #endif //CACHE_CACHE_H_ 
