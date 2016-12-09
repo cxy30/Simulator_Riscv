@@ -39,6 +39,8 @@ int Cache::GetReplacePosition(int index){
                     position = i;
                 }
         }
+        //if (cache_info[index][position].maxC == 0 && cache_addr[index][position].valid == true)
+        //    printf("find\n");
     }
 
     #ifdef LRU

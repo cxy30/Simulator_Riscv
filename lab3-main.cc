@@ -35,9 +35,9 @@ int main(int argc, char **argv) {
   lineSize2=64;
   set1 = size1/way1/lineSize1;
   set2 = size2/way2/lineSize2;
-  Cache* l2 = new Cache(size2, set2, way2, 0,1, m);
+  Cache* l2 = new Cache(size2, set2, way2, 0,1, m, true);
   l2->SetLower(m);
-  Cache* l1 = new Cache(size1, set1, way1, 0,1, l2);
+  Cache* l1 = new Cache(size1, set1, way1, 0,1, l2, false);
   l1->SetLower(l2);
 
   StorageStats s;

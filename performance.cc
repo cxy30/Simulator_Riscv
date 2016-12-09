@@ -141,24 +141,24 @@ int HandleTrace(char *filename)
 	StorageStats stats;
 	l1->GetStats(stats);
 	time += stats.access_time;
-	int miss = 0;
+	//int miss = 0;
 	if(l2 != NULL) 
 	{
 		l2->GetStats(stats);
 		time += stats.access_time;
-		miss += stats.miss_num;
+		//miss += stats.miss_num;
 	}
 	if(l3 != NULL)
 	{
 		l3->GetStats(stats);
 		time += stats.access_time;
-		miss += stats.miss_num;
+		//miss += stats.miss_num;
 	}
 	
 	memory->GetStats(stats);
 	time += stats.access_time;
 
-	printf("num: %d time: %d miss: %d\n", num, time, miss);
+	printf("num: %d time: %d\n", num, time);//, miss);
 	return time;
 }
 
