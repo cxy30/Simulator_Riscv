@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <map>
 #include <string>
+#include <fstream>
 
 char *regTable[32] = {"zr", "ra", "sp", "gp", "tp", "t0", "t1", "t2", "s0",
 	 "s1", "a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "s2", "s3", "s4", "s5",
@@ -1604,9 +1605,11 @@ void Machine::MemoryAccess()
 	if(memFun == MNull)
 		return;
 	void *content = NULL;
+	//std::ofstream fout("./trace/5.trace", std::ios::app);
 	switch(memFun)
 	{
 	case Read:
+		//fout << 'r' << '\t' << "0x" << std::hex << vald << std::endl;
 		switch(memSize)
 		{
 		case MDouble:
@@ -1643,6 +1646,7 @@ void Machine::MemoryAccess()
 		}
 		break;
 	case MWrite:
+		//fout << 'w' << '\t' << "0x" << std::hex << vald << std::endl;
 		switch(memSize)
 		{
 		case MDouble:
@@ -1660,6 +1664,7 @@ void Machine::MemoryAccess()
 		}
 		break;
 	}
+	//fout.close();
 	if(content != NULL) delete content;
 }
 

@@ -268,7 +268,7 @@ void TestL1()
 			int sizes[3] = {size[i], size[9], size[12]};
 			int associalities[3] = {associality[j], associality[3], associality[3]};
 			int latencies[3] = {hitLatency[i][j], hitLatency[9][3], hitLatency[12][3]};
-			int t = Test(3, sizes, associalities, latencies, "./trace/1.trace");
+			int t = Test(1, sizes, associalities, latencies, "./trace/1.trace");
 			latency1[i][j] = t;
 		}
 	}
@@ -283,7 +283,7 @@ void TestL1()
 			int sizes[3] = {size[i], size[9], size[12]};
 			int associalities[3] = {associality[j], associality[3], associality[3]};
 			int latencies[3] = {hitLatency[i][j], hitLatency[9][3], hitLatency[12][3]};
-			int t = Test(3, sizes, associalities, latencies, "./trace/2.trace");
+			int t = Test(1, sizes, associalities, latencies, "./trace/2.trace");
 			latency2[i][j] = t;
 		}
 	}
@@ -302,7 +302,7 @@ void TestL2()
 			int sizes[3] = {size[2], size[i], size[12]};
 			int associalities[3] = {associality[0], associality[j], associality[3]};
 			int latencies[3] = {hitLatency[2][0], hitLatency[i][j], hitLatency[12][3]};
-			int t = Test(3, sizes, associalities, latencies, "./trace/1.trace");
+			int t = Test(2, sizes, associalities, latencies, "./trace/1.trace");
 			latency1[i][j] = t;
 		}
 	}
@@ -317,7 +317,7 @@ void TestL2()
 			int sizes[3] = {size[2], size[i], size[12]};
 			int associalities[3] = {associality[0], associality[j], associality[3]};
 			int latencies[3] = {hitLatency[2][0], hitLatency[i][j], hitLatency[12][3]};
-			int t = Test(3, sizes, associalities, latencies, "./trace/2.trace");
+			int t = Test(2, sizes, associalities, latencies, "./trace/2.trace");
 			latency2[i][j] = t;
 		}
 	}
@@ -380,7 +380,7 @@ int main()
 	//int latencies[3] = {hitLatency[2][0], hitLatency[7][0], hitLatency[12][3]};
 	//int t = Test(3, sizes, associalities, latencies, "./trace/1.trace");
 	
-	//PrintLatency();
+	PrintLatency();
 	
 	return 0;
 }
