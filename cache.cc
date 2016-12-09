@@ -150,7 +150,7 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
                         emptyNum=3;
                     for(int i=1;i<=emptyNum;i++)
                     this->HandleRequest(addr+i*config_.block_size,1,1,temp,true);
-            }    
+            }   
         }
     }
     int lower_hit = -1, lower_time = 0;
