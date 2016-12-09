@@ -35,13 +35,16 @@ Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate
     lower_ = storage;
     block_lastuse = new int *[config_.set_num];
     block_enter = new int*[config_.set_num];
+    prefetch_tag = new int*[config_.set_num];
     for(int i = 0; i < config_.set_num; ++ i){
         block_lastuse[i] = new int[config_.associativity];
         block_enter[i] = new int[config_.associativity];
+        prefetch_tag[i] = new int[config_.associativity];
         for (int j = 0; j < config_.associativity; ++ j)
             {
                 block_lastuse[i][j]=-1;
                 block_enter[i][j]=-1;
+                prefetch_tag[i][j]=0;
             }
     }
 
@@ -76,10 +79,12 @@ Cache::~Cache(){
         {
             delete block_lastuse[i];
             delete block_enter[i];
+            delete prefetch_tag[i];
         } 
     delete block_lastuse;
     delete block_enter;
     delete cache_addr;
+    delete prefetch_tag;
 }
 
 void Cache::HandleRequest(uint64_t addr, int bytes, int read,
@@ -119,7 +124,35 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
         //else
         stats_.access_time += latency_.hit_latency;
     }
+    if(!prefetch)
+    {
+        if(hit==1)
+        {
+            if(prefetch_tag[index][position]==1)
+                {
 
+                    //prefetch_tag[index][position]=1;
+                    char temp[64];
+                    this->HandleRequest(addr+config_.block_size,1,1,temp,true);
+                    this->HandleRequest(addr+2*config_.block_size,1,1,temp,true);
+                    this->HandleRequest(addr+3*config_.block_size,1,1,temp,true);
+                }
+            else
+            {
+                    char temp[64];
+                    int emptyNum=0;
+                    for(int i=0;i<config_.associativity;i++)
+                    {
+                        if(block_lastuse[index][i]==-1)
+                            emptyNum+=1;
+                    }
+                    if(emptyNum>3)
+                        emptyNum=3;
+                    for(int i=1;i<=emptyNum;i++)
+                    this->HandleRequest(addr+i*config_.block_size,1,1,temp,true);
+            }    
+        }
+    }
     int lower_hit = -1, lower_time = 0;
     if (read == 1){
         if (hit == 1)
@@ -170,6 +203,11 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
             }
         }
     }
+    if(!prefetch&&hit==0)
+   { 
+        char temp[64];
+        this->HandleRequest(addr+config_.block_size,1,1,temp,true);
+   }      
 }
 
 int Cache::ReplacePlace(uint64_t index, uint64_t tag, char* content, bool prefetch){
@@ -177,7 +215,10 @@ int Cache::ReplacePlace(uint64_t index, uint64_t tag, char* content, bool prefet
         stats_.replace_num ++;
 
     int position = GetReplacePosition(index);
-
+    if(prefetch) // set the tag to 1
+    prefetch_tag[index][position]=1;
+    else
+    prefetch_tag[index][position]=0;
 
     if (config_.write_through == 0 && cache_addr[index][position].valid == TRUE && cache_addr[index][position].dirty == TRUE){
         int lower_hit, lower_time;

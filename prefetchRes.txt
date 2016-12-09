@@ -1,0 +1,53 @@
+LRU + Always + trace1
+cache 1:
+access_counter: 612200
+miss_num: 3432
+access_time: 2448800
+replace_num: 3432
+fetch_num: 3432
+prefetch_num: 612200
+
+cache 2:
+access_counter: 3535
+miss_num: 3376
+access_time: 38885
+replace_num: 3376
+fetch_num: 3376
+prefetch_num: 7227
+
+memory:
+access_counter: 3398
+miss_num: 0
+access_time: 339800
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 2827485
+
+LRU + MISS + trace1:
+cache 1:
+access_counter: 612200
+miss_num: 3554
+access_time: 2448800
+replace_num: 3554
+fetch_num: 3554
+prefetch_num: 3554
+
+cache 2:
+access_counter: 3658
+miss_num: 3423
+access_time: 40238
+replace_num: 3423
+fetch_num: 3423
+prefetch_num: 6995
+
+memory:
+access_counter: 3446
+miss_num: 0
+access_time: 344600
+replace_num: 0
+fetch_num: 0
+prefetch_num: 0
+
+total latency: 2833638

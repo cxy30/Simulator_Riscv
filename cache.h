@@ -63,6 +63,7 @@ class Cache: public Storage {
     Block **cache_addr;
     int **block_lastuse;
     int **block_enter;
+    int ** prefetch_tag;
 };
 
 #endif //CACHE_CACHE_H_ 

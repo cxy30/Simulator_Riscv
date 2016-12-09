@@ -1,221 +1,219 @@
-LRU trace1
+LRU 1
 cache 1:
-access_counter: 10000
-miss_num: 9962
-access_time: 40000
-replace_num: 9962
-fetch_num: 9962
+access_counter: 612200
+miss_num: 3617
+access_time: 2448800
+replace_num: 3617
+fetch_num: 3617
 prefetch_num: 0
 
 cache 2:
-access_counter: 14665
-miss_num: 9962
-access_time: 161315
-replace_num: 9962
-fetch_num: 9962
+access_counter: 3802
+miss_num: 3445
+access_time: 41822
+replace_num: 3445
+fetch_num: 3445
 prefetch_num: 0
 
 memory:
-access_counter: 12667
+access_counter: 3449
 miss_num: 0
-access_time: 1266700
+access_time: 344900
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 1468015
+total latency: 2835522
 
-RAND trace1:
-
+RAND 1
 cache 1:
-access_counter: 10000
-miss_num: 9963
-access_time: 40000
-replace_num: 9963
-fetch_num: 9963
+access_counter: 612200
+miss_num: 3731
+access_time: 2448800
+replace_num: 3731
+fetch_num: 3731
 prefetch_num: 0
 
 cache 2:
-access_counter: 14662
-miss_num: 10295
-access_time: 161282
-replace_num: 10295
-fetch_num: 10295
+access_counter: 3982
+miss_num: 3524
+access_time: 43802
+replace_num: 3524
+fetch_num: 3524
 prefetch_num: 0
 
 memory:
-access_counter: 13205
+access_counter: 3592
 miss_num: 0
-access_time: 1320500
+access_time: 359200
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 1521782
+total latency: 2851802
 
+FIFO 1:
 
-FIFO trace1:
 cache 1:
-access_counter: 10000
-miss_num: 9962
-access_time: 40000
-replace_num: 9962
-fetch_num: 9962
+access_counter: 612200
+miss_num: 3701
+access_time: 2448800
+replace_num: 3701
+fetch_num: 3701
 prefetch_num: 0
 
 cache 2:
-access_counter: 14665
-miss_num: 9961
-access_time: 161315
-replace_num: 9961
-fetch_num: 9961
+access_counter: 3916
+miss_num: 3472
+access_time: 43076
+replace_num: 3472
+fetch_num: 3472
 prefetch_num: 0
 
 memory:
-access_counter: 12850
+access_counter: 3504
 miss_num: 0
-access_time: 1285000
+access_time: 350400
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 1486315
+total latency: 2842276
 
-Aging trace1:
-
+Aging 1:
 cache 1:
-access_counter: 10000
-miss_num: 9962
-access_time: 40000
-replace_num: 9962
-fetch_num: 9962
+access_counter: 612200
+miss_num: 3621
+access_time: 2448800
+replace_num: 3621
+fetch_num: 3621
 prefetch_num: 0
 
 cache 2:
-access_counter: 14665
-miss_num: 9962
-access_time: 161315
-replace_num: 9962
-fetch_num: 9962
+access_counter: 3809
+miss_num: 3445
+access_time: 41899
+replace_num: 3445
+fetch_num: 3445
 prefetch_num: 0
 
 memory:
-access_counter: 12667
+access_counter: 3449
 miss_num: 0
-access_time: 1266700
+access_time: 344900
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 1468015
+total latency: 2835599
 
-LRU trace2:
+LRU 2:
 
 cache 1:
-access_counter: 32793
-miss_num: 32793
-access_time: 131172
-replace_num: 32793
-fetch_num: 32793
+access_counter: 92492
+miss_num: 88
+access_time: 369968
+replace_num: 88
+fetch_num: 88
 prefetch_num: 0
 
 cache 2:
-access_counter: 48510
-miss_num: 32784
-access_time: 533610
-replace_num: 32784
-fetch_num: 32784
+access_counter: 88
+miss_num: 88
+access_time: 968
+replace_num: 88
+fetch_num: 88
 prefetch_num: 0
 
 memory:
-access_counter: 46796
+access_counter: 88
 miss_num: 0
-access_time: 4679600
+access_time: 8800
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 5344382
+total latency: 379736
 
-RAND trace2:
-
+RAND 2:
 cache 1:
-access_counter: 32793
-miss_num: 32793
-access_time: 131172
-replace_num: 32793
-fetch_num: 32793
+access_counter: 92492
+miss_num: 90
+access_time: 369968
+replace_num: 90
+fetch_num: 90
 prefetch_num: 0
 
 cache 2:
-access_counter: 48494
-miss_num: 32088
-access_time: 533434
-replace_num: 32088
-fetch_num: 32088
+access_counter: 93
+miss_num: 88
+access_time: 1023
+replace_num: 88
+fetch_num: 88
 prefetch_num: 0
 
 memory:
-access_counter: 45860
+access_counter: 88
 miss_num: 0
-access_time: 4586000
+access_time: 8800
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 5250606
+total latency: 379791
 
-FIFO trace2:
-
+FIFO 2:
 cache 1:
-access_counter: 32793
-miss_num: 32793
-access_time: 131172
-replace_num: 32793
-fetch_num: 32793
+access_counter: 92492
+miss_num: 88
+access_time: 369968
+replace_num: 88
+fetch_num: 88
 prefetch_num: 0
 
 cache 2:
-access_counter: 48510
-miss_num: 32789
-access_time: 533610
-replace_num: 32789
-fetch_num: 32789
+access_counter: 88
+miss_num: 88
+access_time: 968
+replace_num: 88
+fetch_num: 88
 prefetch_num: 0
 
 memory:
-access_counter: 46806
+access_counter: 88
 miss_num: 0
-access_time: 4680600
+access_time: 8800
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 5345382
+total latency: 379736
 
-Aging trace2:
+Aging 2:
 cache 1:
-access_counter: 32793
-miss_num: 32793
-access_time: 131172
-replace_num: 32793
-fetch_num: 32793
+access_counter: 92492
+miss_num: 88
+access_time: 369968
+replace_num: 88
+fetch_num: 88
 prefetch_num: 0
 
 cache 2:
-access_counter: 48510
-miss_num: 32784
-access_time: 533610
-replace_num: 32784
-fetch_num: 32784
+access_counter: 88
+miss_num: 88
+access_time: 968
+replace_num: 88
+fetch_num: 88
 prefetch_num: 0
 
 memory:
-access_counter: 46796
+access_counter: 88
 miss_num: 0
-access_time: 4679600
+access_time: 8800
 replace_num: 0
 fetch_num: 0
 prefetch_num: 0
 
-total latency: 5344382
+total latency: 379736
+
+

@@ -4,7 +4,7 @@
 #define LRU
 //#define  RAND
 //#define FIFO
-//define AGING
+//#define AGING
 int Cache::GetReplacePosition(int index){
     int position=0;
     #ifdef LRU

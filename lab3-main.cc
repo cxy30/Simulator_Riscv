@@ -49,6 +49,8 @@ int main(int argc, char **argv) {
   s.prefetch_num = 0;
   m->SetStats(s);
   l1->SetStats(s);
+  l2->SetStats(s);
+
   //printf("main5\n");
 
   StorageLatency ml;
@@ -68,15 +70,15 @@ int main(int argc, char **argv) {
   l2->SetLatency(ll2);
   char content[64];
 
-  fin.open("./trace/1.trace", ios::in);
+  fin.open("./trace/3.trace", ios::in);
   char q;
   lint address;
   int requestNum = 0;
   //printf("main7\n");
   while(fin >> q)
   {
-    fin >> address;
-    //printf("q: %c address: %llx\n", q, address);
+    fin >> hex >> address;
+    //mprintf("q: %c address: %llx\n", q, address);
     if(q == 'r')
     {
       l1->HandleRequest(address, 1, 1, content, 0);
