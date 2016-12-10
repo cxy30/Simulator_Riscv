@@ -9,7 +9,7 @@
 int Cache::GetReplacePosition(int index){
     int position=0;
 
-    if (AIP || useBypass){
+    if (AIP || useBypass == 1){
         position = -1;
         for (int i = 0; i < config_.associativity; ++ i)
             cache_info[index][i].C ++;
@@ -164,7 +164,7 @@ void Cache::HitCache(uint64_t index, uint64_t position){
     block_enter[index][position]=block_enter[index][position]|(1<<30);
     #endif
 
-    if (AIP || useBypass){
+    if (AIP || useBypass == 1){
         for (int i = 0; i < config_.associativity; ++ i)
             cache_info[index][i].C ++;
         if (cache_info[index][position].C > cache_info[index][position].maxC)
@@ -177,7 +177,7 @@ void Cache::HitCache(uint64_t index, uint64_t position){
 
 void Cache::updateInfo(int index, uint64_t tag, int position, uint64_t newTag){
     //printf("index: %llx tag: %llx position: %llx newTag: %llx\n", index, tag, position, newTag);
-    if (AIP || useBypass){
+    if (AIP || useBypass == 1){
         if (tag != -1){
             uint64_t addr = (tag << config_.index_bit) + index;
             uint64_t tag1 = addr & ((1 << 16) - 1);

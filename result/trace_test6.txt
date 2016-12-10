@@ -1,0 +1,198 @@
+Th: 0 1.000000 0.800000
+total latency: 2935929
+
+Th: 2 1.000000 0.800000
+total latency: 2932144
+
+Th: 4 1.000000 0.800000
+total latency: 2932049
+
+Th: 6 1.000000 0.800000
+total latency: 2932049
+
+Th: 8 1.000000 0.800000
+total latency: 2932049
+
+Th: 10 1.000000 0.800000
+total latency: 2932049
+
+Th: 0 1.000000 0.820000
+total latency: 2935929
+
+Th: 2 1.000000 0.820000
+total latency: 2932144
+
+Th: 4 1.000000 0.820000
+total latency: 2932049
+
+Th: 6 1.000000 0.820000
+total latency: 2932049
+
+Th: 8 1.000000 0.820000
+total latency: 2932049
+
+Th: 10 1.000000 0.820000
+total latency: 2932049
+
+Th: 0 1.000000 0.840000
+total latency: 2935929
+
+Th: 2 1.000000 0.840000
+total latency: 2932144
+
+Th: 4 1.000000 0.840000
+total latency: 2932049
+
+Th: 6 1.000000 0.840000
+total latency: 2932049
+
+Th: 8 1.000000 0.840000
+total latency: 2932049
+
+Th: 10 1.000000 0.840000
+total latency: 2932049
+
+Th: 0 1.000000 0.860000
+total latency: 2935929
+
+Th: 2 1.000000 0.860000
+total latency: 2932144
+
+Th: 4 1.000000 0.860000
+total latency: 2932049
+
+Th: 6 1.000000 0.860000
+total latency: 2932049
+
+Th: 8 1.000000 0.860000
+total latency: 2932049
+
+Th: 10 1.000000 0.860000
+total latency: 2932049
+
+Th: 0 1.000000 0.880000
+total latency: 2935929
+
+Th: 2 1.000000 0.880000
+total latency: 2932144
+
+Th: 4 1.000000 0.880000
+total latency: 2932049
+
+Th: 6 1.000000 0.880000
+total latency: 2932049
+
+Th: 8 1.000000 0.880000
+total latency: 2932049
+
+Th: 10 1.000000 0.880000
+total latency: 2932049
+
+Th: 0 1.000000 0.900000
+total latency: 2935929
+
+Th: 2 1.000000 0.900000
+total latency: 2932144
+
+Th: 4 1.000000 0.900000
+total latency: 2932049
+
+Th: 6 1.000000 0.900000
+total latency: 2932049
+
+Th: 8 1.000000 0.900000
+total latency: 2932049
+
+Th: 10 1.000000 0.900000
+total latency: 2932049
+
+Th: 0 1.000000 0.920000
+total latency: 2935929
+
+Th: 2 1.000000 0.920000
+total latency: 2932144
+
+Th: 4 1.000000 0.920000
+total latency: 2932049
+
+Th: 6 1.000000 0.920000
+total latency: 2932049
+
+Th: 8 1.000000 0.920000
+total latency: 2932049
+
+Th: 10 1.000000 0.920000
+total latency: 2932049
+
+Th: 0 1.000000 0.940000
+total latency: 2935929
+
+Th: 2 1.000000 0.940000
+total latency: 2932144
+
+Th: 4 1.000000 0.940000
+total latency: 2932049
+
+Th: 6 1.000000 0.940000
+total latency: 2932049
+
+Th: 8 1.000000 0.940000
+total latency: 2932049
+
+Th: 10 1.000000 0.940000
+total latency: 2932049
+
+Th: 0 1.000000 0.960000
+total latency: 2935929
+
+Th: 2 1.000000 0.960000
+total latency: 2932144
+
+Th: 4 1.000000 0.960000
+total latency: 2932049
+
+Th: 6 1.000000 0.960000
+total latency: 2932049
+
+Th: 8 1.000000 0.960000
+total latency: 2932049
+
+Th: 10 1.000000 0.960000
+total latency: 2932049
+
+Th: 0 1.000000 0.980000
+total latency: 2935929
+
+Th: 2 1.000000 0.980000
+total latency: 2932144
+
+Th: 4 1.000000 0.980000
+total latency: 2932049
+
+Th: 6 1.000000 0.980000
+total latency: 2932049
+
+Th: 8 1.000000 0.980000
+total latency: 2932049
+
+Th: 10 1.000000 0.980000
+total latency: 2932049
+
+Th: 0 1.000000 1.000000
+total latency: 2932049
+
+Th: 2 1.000000 1.000000
+total latency: 2932049
+
+Th: 4 1.000000 1.000000
+total latency: 2932049
+
+Th: 6 1.000000 1.000000
+total latency: 2932049
+
+Th: 8 1.000000 1.000000
+total latency: 2932049
+
+Th: 10 1.000000 1.000000
+total latency: 2932049
+

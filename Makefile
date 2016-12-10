@@ -9,6 +9,9 @@ $(PROGRAM) : main.o $(O_FILES)
 lab3 : lab3-main.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
 	$(CC) -o lab3 lab3-main.o memory.o cache.o replace_algorithm.o bypass.o
 
+bypass_test : bypass_test.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
+	$(CC) -o bypass_test bypass_test.o memory.o cache.o replace_algorithm.o bypass.o
+
 performance : performance.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
 	$(CC) -o performance performance.o memory.o cache.o replace_algorithm.o prefetch.o bypass.o
 
@@ -39,6 +42,9 @@ syscall.o : syscall.cc syscall.h
 lab3-main.o : lab3-main.cc cache.h memory.h param.h
 	$(CC) -c lab3-main.cc
 
+bypass_test.o : bypass_test.cc cache.h memory.h param.h
+	$(CC) -c bypass_test.cc
+
 replace_algorithm.o: cache.h
 	$(CC) -c replace_algorithm.cc
 
@@ -52,4 +58,4 @@ performance.o : performance.cc cache.h memory.h param.h
 	$(CC) -c performance.cc
 
 clean : 
-	rm $(PROGRAM) main.o $(O_FILES) lab3-main.o lab3 performance.o performance
+	rm $(PROGRAM) main.o $(O_FILES) lab3-main.o lab3 performance.o performance bypass_test bypass_test.o

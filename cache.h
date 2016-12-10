@@ -25,7 +25,7 @@ struct Block{
 
 class Cache: public Storage {
     public:
-    Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage, bool useBypass0 = false);
+    Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage, int useBypass0 = false);
     ~Cache();
 
     // Sets & Gets
@@ -69,7 +69,7 @@ class Cache: public Storage {
 
 
     //structure for AIP algorithm
-    bool useBypass;
+    int useBypass;
     struct Info
     {
         int maxC;
@@ -87,6 +87,16 @@ class Cache: public Storage {
         bool conf;
     };
     CacheInfo **cache_info;
+
+    //structure for bypass 2
+    struct BypassInfo{
+        uint64_t hit;
+        uint64_t miss;
+    };
+    BypassInfo *bypassInfo;
+    public:
+        float bypassTh;
+        int bypassMinT;
 };
 
 #endif //CACHE_CACHE_H_ 

@@ -19,7 +19,7 @@ int SetBitNum(uint64_t num){
     return bit;
 }
 
-Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage, bool useBypass0){
+Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate, Storage *storage, int useBypass0){
     //printf("init cache\n");
     config_.size = size;
     config_.associativity = way;
@@ -86,6 +86,13 @@ Cache::Cache(int size, int set, int way, bool write_through, bool write_allocate
     }
     useBypass = useBypass0;
 
+    bypassInfo = new BypassInfo[set];
+    for (int i = 0; i < set; ++ i){
+        bypassInfo[i].hit = 0;
+        bypassInfo[i].miss = 0;
+    }
+    bypassTh = 0.94;
+    bypassMinT = 4;
 }
 
 Cache::~Cache(){
@@ -131,7 +138,7 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
     exit(0);
     }
 
-    if (useBypass && do_bypass(addr, index)){
+    if (useBypass != 0 && do_bypass(addr, index)){
         lower_->HandleRequest(addr, bytes, read, content, prefetch);
         stats_.fetch_num ++;
         return;
@@ -148,8 +155,13 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
     }
 
     if (prefetch == FALSE){
-        if (hit == 0)
+        if (hit == 0){
             stats_.miss_num ++;
+            bypassInfo[index].miss ++;
+        }
+        else{
+            bypassInfo[index].hit ++;
+        }
         //else
         stats_.access_time += latency_.hit_latency;
     }
